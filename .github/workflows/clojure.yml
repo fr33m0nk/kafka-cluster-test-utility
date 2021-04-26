@@ -16,6 +16,6 @@ jobs:
     - name: Install dependencies
       run: lein deps
     - name: Run tests
-      run: lein cloverage
+      run: lein test
     - name: Publish artifacts
       run: env CLOJARS_USERNAME=${{ secrets.CLOJAR_USER }} CLOJARS_PASSWORD=${{ secrets.CLOJARS_TOKEN }} lein deploy clojars

@@ -33,7 +33,4 @@
                   ["vcs" "commit"]
                   ["vcs" "tag"]
                   ["deploy"]
-                  ["vcs" "push"]]
-  :repositories [["releases" {:url "https://repo.clojars.org"
-                              :username :env/CLOJAR_USER
-                              :password :env/CLOJARS_TOKEN}]])
+                  ["vcs" "push"]])

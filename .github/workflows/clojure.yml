@@ -17,13 +17,3 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein cloverage
-
-  publish:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - name: Install dependencies
-        run: lein deps
-      - name: Publish artifacts
-        run: lein deploy clojars

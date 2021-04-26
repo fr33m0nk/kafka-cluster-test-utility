@@ -17,3 +17,8 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein test
+    - name: Publish
+      env:
+        CLOJARS_USER: ${{ secrets.CLOJAR_USER }}
+        CLOJARS_PASS: ${{ secrets.CLOJARS_TOKEN }}
+      run: lein deploy clojars

@@ -17,5 +17,13 @@ jobs:
       run: lein deps
     - name: Run tests
       run: lein cloverage
-    - name: Publish artifacts
-      run: env CLOJARS_USERNAME=${{ secrets.CLOJAR_USER }} CLOJARS_PASSWORD=${{ secrets.CLOJARS_TOKEN }} lein deploy clojars
+
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: lein deps
+      - name: Publish artifacts
+        run: lein deploy clojars

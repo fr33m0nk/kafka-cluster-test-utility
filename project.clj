@@ -23,7 +23,8 @@
                                        [org.apache.kafka/kafka-streams "2.8.0" :classifier "test" :scope "provided"]
                                        [org.apache.kafka/kafka-clients "2.8.0" :classifier "test" :scope "provided"]]}
              :provided {:dependencies []}}
-  :deploy-repositories [["releases" :clojars]]
+  {:deploy-repositories [["releases" :clojars]
+                         ["snapshots" :clojars]]}
   :aliases {"update-readme-version" ["shell" "sed" "-i" "s/\\\\[kafka-cluster-test-utility \"[0-9.]*\"\\\\]/[kafka-cluster-test-utility \"${:version}\"]/" "README.md"]}
   :release-tasks [["shell" "git" "diff" "--exit-code"]
                   ["change" "version" "leiningen.release/bump-version"]

@@ -1,5 +1,5 @@
 # kafka-cluster-test-utility
-[![Build Status](https://travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
+[![Clojure CI](https://github.com/fr33m0nk/kafka-cluster-test-utility/actions/workflows/clojure.yml/badge.svg)](https://github.com/fr33m0nk/kafka-cluster-test-utility/actions/workflows/clojure.yml)
 [![codecov](https://codecov.io/gh///branch/master/graph/badge.svg)](https://codecov.io/gh//)
 [![Clojars Project](https://img.shields.io/clojars/v/kafka-test-utility.svg)](https://clojars.org/kafka-test-utility)
 

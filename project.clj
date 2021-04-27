@@ -28,7 +28,7 @@
                                        [org.apache.kafka/kafka-streams "2.8.0" :classifier "test" :scope "provided"]
                                        [org.apache.kafka/kafka-clients "2.8.0" :classifier "test" :scope "provided"]]}
              :provided {:dependencies []}}
-  :deploy-repositories [["clojars" {:url      "https://repo.clojars.org"
+  :deploy-repositories [["clojars" {:url      "https://clojars.org/repo/"
                                     :username :env/clojars_user
                                     :password :env/clojars_pass
                                     :checksum :ignore

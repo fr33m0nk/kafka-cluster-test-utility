@@ -20,5 +20,5 @@ jobs:
     - name: Publish
       env:
         CLOJARS_USER: ${{ secrets.CLOJARS_USER }}
-        CLOJARS_PASS: ${{ secrets.CLOJARS_PASSWD }}
+        CLOJARS_PASS: ${{ secrets.CLOJARS_PASS }}
       run: lein deploy clojars

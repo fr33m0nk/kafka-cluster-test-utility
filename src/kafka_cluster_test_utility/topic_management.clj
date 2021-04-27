@@ -2,6 +2,7 @@
   (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)))
 
 (defn create-topics
+  "Creates topic(s) on supplied Kafka cluster"
   [kafka-cluster ^EmbeddedKafkaCluster & topic-names]
   (try (.createTopics kafka-cluster (into-array topic-names))
        true
@@ -9,6 +10,7 @@
          false)))
 
 (defn delete-topics
+  "Deletes topic(s) on supplied Kafka cluster"
   [kafka-cluster ^EmbeddedKafkaCluster & topic-names]
   (try (.deleteTopicsAndWait kafka-cluster (into-array topic-names))
        true
@@ -16,6 +18,7 @@
          false)))
 
 (defn recreate-topic
+  "Recreates topic on supplied Kafka cluster"
   [kafka-cluster ^EmbeddedKafkaCluster topic-name]
   (try
     (delete-topics kafka-cluster topic-name)
@@ -23,6 +26,7 @@
       (create-topics kafka-cluster topic-name))))
 
 (defn recreate-topics
+  "Recreates topics on supplied Kafka cluster"
   [kafka-cluster ^EmbeddedKafkaCluster topic-names]
   {:pre [(sequential? topic-names)]}
   (try

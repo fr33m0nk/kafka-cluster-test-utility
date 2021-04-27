@@ -27,6 +27,8 @@
     :stop  (call-method kafka-cluster :after)))
 
 (defn start-cluster
+  "Starts a embedded Kafka cluster with provided number of brokers.
+  Changes state of atom to manage cluster state centrally."
   [number-of-brokers]
   (let [start (fn [] (do
                        (cluster-operation (:cluster @s/state) :start)
@@ -40,6 +42,7 @@
           :otherwise @s/state)))
 
 (defn stop-cluster
+  "Stops embedded Kafka cluster if running. Changes state of atom to manage cluster state centrally."
   []
   (let [stop (fn [] (do
                       (cluster-operation (:cluster @s/state) :stop)
@@ -49,6 +52,7 @@
       @s/state)))
 
 (defn get-bootstrap-server
+  "Returns the bootstrap servers if embedded Kafka cluster is running else nil."
   []
   (when-let* [running? (:running? @s/state)
              kafka-cluster (:cluster @s/state)]

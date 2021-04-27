@@ -3,10 +3,12 @@
            (java.time Duration)))
 
 (defn get-consumer
+  "Returns a Kafka Consumer"
   [properties]
   (KafkaConsumer. properties))
 
 (defn read-one-from-topic
+  "Consumes one message from provided Kafka topic."
   [consumer ^KafkaConsumer topic-name timeout-in-seconds]
   (.subscribe consumer [topic-name])
   (let [consumer-records (.poll consumer (Duration/ofSeconds (long timeout-in-seconds)))
@@ -15,6 +17,7 @@
       (.value record))))
 
 (defn read-multiple-from-topic
+  "Consumes all message from provided Kafka topic."
   [consumer ^KafkaConsumer topic-name timeout-in-seconds]
   (.subscribe consumer [topic-name])
   (let [consumer-records (.poll consumer (Duration/ofSeconds (long timeout-in-seconds)))

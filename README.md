@@ -1,7 +1,7 @@
 # kafka-cluster-test-utility
 [![Build Status](https://travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
 [![codecov](https://codecov.io/gh///branch/master/graph/badge.svg)](https://codecov.io/gh//)
-[![Clojars Project](https://img.shields.io/clojars/v/kafka-test-utility.svg)](https://clojars.org/kafka-test-utility)
+[![Clojars Project](https://img.shields.io/clojars/v/net.clojars.fr33m0nk/kafka-cluster-test-utility.svg)](https://clojars.org/net.clojars.fr33m0nk/kafka-cluster-test-utility)
 
 A Clojure library designed to simplify the execution of end-to-end tests for applications that use Kafka as message broker or streaming platform.
 The applications may :
@@ -10,7 +10,7 @@ The applications may :
 * use Kafka streaming API
 
 ```clojure
-[kafka-cluster-test-utility "1.0.0"]
+[kafka-cluster-test-utility "0.2.0"]
 ```
 
 ## Features

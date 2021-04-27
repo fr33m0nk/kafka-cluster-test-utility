@@ -5,9 +5,6 @@
             :url  "http://www.eclipse.org/legal/epl-v20.html"}
   :scm {:name "git"
         :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"}
-  :pom-addition [:developers [:developer {:id "benbit"}
-                              [:name "Prashant"]
-                              [:url "http://www.example.com/benjamin"]]]
   :dependencies [[org.clojure/tools.namespace "1.1.0"]
                  [junit/junit "4.13.2"]
                  [org.junit.jupiter/junit-jupiter-api "5.7.1"]

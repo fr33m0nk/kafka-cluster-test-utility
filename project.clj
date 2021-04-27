@@ -1,13 +1,13 @@
-(defproject kafka-cluster-test-utility "1.0.0"
+(defproject kafka-cluster-test-utility "0.1.0"
   :description "Embedded Kafka Cluster and Protobuf util"
-  :url "https://github.com/fr33m0nk/"
+  :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"
   :license {:name "Eclipse Public License"
-            :url  "http://www.eclipse.org/legal/epl-v10.html"}
+            :url  "http://www.eclipse.org/legal/epl-v20.html"}
   :dependencies [[org.clojure/tools.namespace "1.1.0"]
                  [junit/junit "4.13.2"]
                  [org.junit.jupiter/junit-jupiter-api "5.7.1"]
                  [com.github.stefanbirkner/system-rules "1.16.1" :exclusions [junit/junit-dep]]
-                 [clojusc/protobuf "3.6.0-v1.2-SNAPSHOT"]
+                 [clojusc/protobuf "3.5.1-v1.1"]
                  [org.clojure/clojure "1.10.1" :scope "provided"]
                  [org.apache.kafka/kafka_2.13 "2.8.0" :scope "provided"]
                  [org.apache.kafka/kafka-streams "2.8.0" :scope "provided"]

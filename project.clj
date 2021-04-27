@@ -30,7 +30,8 @@
              :provided {:dependencies []}}
   :deploy-repositories [["clojars" {:url      "https://repo.clojars.org"
                                     :username :env/clojars_user
-                                    :password :env/clojars_pass}]]
+                                    :password :env/clojars_pass
+                                    :sign-releases false}]]
   :aliases {"update-readme-version" ["shell" "sed" "-i" "s/\\\\[kafka-cluster-test-utility \"[0-9.]*\"\\\\]/[kafka-cluster-test-utility \"${:version}\"]/" "README.md"]}
   :release-tasks [["shell" "git" "diff" "--exit-code"]
                   ["change" "version" "leiningen.release/bump-version"]

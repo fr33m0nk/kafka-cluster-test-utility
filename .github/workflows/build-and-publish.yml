@@ -15,15 +15,6 @@ jobs:
     - uses: actions/checkout@v2
     - name: Install dependencies
       run: lein deps
-    - name: Cache Clojars
-      uses: actions/cache@v1
-      env:
-        cache-name: cache-clojars
-      with:
-        path: ~/.m2/repository
-        key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('project.clj') }}
-        restore-keys: |
-          ${{ runner.os }}-clojars
     - name: Run tests
       run: lein cloverage
     - name: Publish

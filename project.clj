@@ -1,4 +1,4 @@
-(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.2.0"
+(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.3.0"
   :description "Embedded Kafka Cluster and Protobuf util"
   :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"
   :license {:name "Eclipse Public License"
@@ -13,17 +13,17 @@
                  [org.clojure/clojure "1.10.1" :scope "provided"]
                  [org.apache.kafka/kafka_2.13 "2.8.0" :scope "provided"]
                  [org.apache.kafka/kafka-streams "2.8.0" :scope "provided"]
-                 [org.apache.kafka/kafka-clients "2.8.0" :scope "provided"]]
+                 [org.apache.kafka/kafka-clients "2.8.0" :scope "provided"]
+                 [org.apache.kafka/kafka_2.13 "2.8.0" :classifier "test" :scope "provided"]
+                 [org.apache.kafka/kafka-streams "2.8.0" :classifier "test" :scope "provided"]
+                 [org.apache.kafka/kafka-clients "2.8.0" :classifier "test" :scope "provided"]]
   :plugins [[lein-cloverage "1.0.13"]
             [lein-shell "0.5.0"]
             [lein-ancient "0.6.15"]
             [lein-changelog "0.3.2"]]
   :profiles {:uberjar  {:aot :all}
              :dev      {:global-vars  {*warn-on-reflection* true}
-                        :dependencies [[org.tensorflow/proto "1.15.0"]
-                                       [org.apache.kafka/kafka_2.13 "2.8.0" :classifier "test" :scope "provided"]
-                                       [org.apache.kafka/kafka-streams "2.8.0" :classifier "test" :scope "provided"]
-                                       [org.apache.kafka/kafka-clients "2.8.0" :classifier "test" :scope "provided"]]}
+                        :dependencies [[org.tensorflow/proto "1.15.0"]]}
              :provided {:dependencies []}}
   :deploy-repositories [["clojars" {:url      "https://repo.clojars.org"
                                     :username :env/clojars_user

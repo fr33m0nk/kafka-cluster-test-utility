@@ -37,7 +37,19 @@ That said, it is tested with the following versions of the dependencies:
 
 This library provides convenience in namespace `kafka-cluster-test-utility.core`
 , which can be used in tests.
-Following test is an example of this library in action. 
+
+#### Usage as a tool to speed up development
+```clojure
+(require '[kafka-cluster-test-utility.core :as core])
+
+(core/with-embedded-kafka-cluster 3 ["test-1"]
+                                  (core/send-with-producer "test-topic" (.getBytes "hello dost"))
+                                  (core/with-consumer-read-one "test-topic" 2)
+                                  (comment (do something))
+                                  (comment (do omething more)))
+```
+
+#### Usage as test fixture  
 ```clojure
 (ns kafka-cluster-test-utility.core-test
   (:require [clojure.test :refer :all]

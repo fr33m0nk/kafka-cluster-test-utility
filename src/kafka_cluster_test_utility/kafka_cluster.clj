@@ -1,13 +1,8 @@
 (ns kafka-cluster-test-utility.kafka-cluster
-  (:require [kafka-cluster-test-utility.kafka-cluster-state :as s])
+  (:require
+    [kafka-cluster-test-utility.kafka-cluster-state :as s]
+    [kafka-cluster-test-utility.utility :as utils])
   (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)))
-
-(defmacro when-let*
-  ([bindings & body]
-   (if (seq bindings)
-     `(when-let [~(first bindings) ~(second bindings)]
-        (when-let* ~(drop 2 bindings) ~@body))
-     `(do ~@body))))
 
 (defn- call-method
   [obj method-name & args]
@@ -54,7 +49,7 @@
 (defn get-bootstrap-server
   "Returns the bootstrap servers if embedded Kafka cluster is running else nil."
   []
-  (when-let* [running? (:running? @s/state)
+  (utils/when-let* [running? (:running? @s/state)
              kafka-cluster (:cluster @s/state)]
     (.bootstrapServers kafka-cluster)))
 

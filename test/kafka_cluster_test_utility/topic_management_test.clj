@@ -7,11 +7,11 @@
 (deftest create-topics-test
   (try (let [kafka-cluster (cluster/start-cluster 3)]
          (testing "should create topics in a kafka cluster"
-           (is (true? (tm/create-topics (:cluster kafka-cluster) "test-1" "test-2"))))
+           (is (true? (tm/create-topics "test-1" "test-2"))))
          (testing "should delete topics in a kafka cluster"
-           (is (true? (tm/delete-topics (:cluster kafka-cluster) "test-1" "test-2"))))
+           (is (true? (tm/delete-topics "test-1" "test-2"))))
          (testing "should recreate topic in a kafka cluster"
-           (is (true? (tm/recreate-topics (:cluster kafka-cluster) ["test-1" "test-2"]))))
+           (is (true? (tm/recreate-topics ["test-1" "test-2"]))))
          (testing "should recreate topics in a kafka cluster"
-           (is (true? (tm/recreate-topic (:cluster kafka-cluster) "test-1")))))
+           (is (true? (tm/recreate-topic "test-1")))))
        (finally (cluster/stop-cluster))))

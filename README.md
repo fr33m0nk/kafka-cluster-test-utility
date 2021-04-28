@@ -19,13 +19,18 @@ The applications may :
 
 ## Dependencies
 
-This library specifies following as `:scope "provided"`, to enable usage with different versions.
+This library specifies Kafka dependencies as `:scope "provided"`, to enable usage with different versions.
+Once can add this as well as its dependencies to `dev` profile in order to keep them out of the packaged jar.
 That said, it is tested with the following versions of the dependencies:
 ```clojure
-[org.clojure/clojure "1.10.1"]
-[org.apache.kafka/kafka_2.13 "2.8.0"]
-[org.apache.kafka/kafka-streams "2.8.0"]
-[org.apache.kafka/kafka-clients "2.8.0"]
+  :profiles {:uberjar {:aot :all}
+             :dev {:dependencies [[net.clojars.fr33m0nk/kafka-cluster-test-utility "0.2.0"]
+                                  [org.apache.kafka/kafka_2.13 "2.8.0"]
+                                  [org.apache.kafka/kafka-streams "2.8.0"]
+                                  [org.apache.kafka/kafka-clients "2.8.0"]
+                                  [org.apache.kafka/kafka_2.13 "2.8.0" :classifier "test"]
+                                  [org.apache.kafka/kafka-streams "2.8.0" :classifier "test"]
+                                  [org.apache.kafka/kafka-clients "2.8.0" :classifier "test"]]}}
 ```
 
 ## Usage

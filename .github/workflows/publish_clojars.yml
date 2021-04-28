@@ -1,0 +1,34 @@
+# This is a basic workflow to help you get started with Actions
+
+on:
+  workflow_dispatch:
+    branches: [ main ]    
+
+    - name: Publish
+      env:
+        CLOJARS_USER: ${{ secrets.CLOJARS_USER }}
+        CLOJARS_PASS: ${{ secrets.CLOJARS_PASS }}
+      run: lein deploy clojars
+
+
+name: Clojars Publish
+
+# Controls when the action will run. 
+on:    
+  workflow_dispatch:
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      - name: Publish
+        env:
+          CLOJARS_USER: ${{ secrets.CLOJARS_USER }}
+          CLOJARS_PASS: ${{ secrets.CLOJARS_PASS }}
+        run: lein deploy clojars

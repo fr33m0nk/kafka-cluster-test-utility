@@ -8,5 +8,5 @@
                                       ["test-1"]
                                       (core/send-with-producer "test-topic" (.getBytes "hello dost"))
                                       (is (= "hello dost"
-                                             (->> (core/with-consumer-read-one "test-topic" 2)
+                                             (->> ^"[B" (core/with-consumer-read-one "test-topic" 2)
                                                   String.))))))

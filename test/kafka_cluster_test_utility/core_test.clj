@@ -24,7 +24,7 @@
       (core/send-with-producer "test-topic" (.getBytes third-message))
       (is (= [first-message second-message third-message]
              (->> (core/with-consumer-read-multiple "test-topic" 2)
-                  (map #(String. %))))))))
+                  (map #(String. ^"[B" %))))))))
 
 (deftest set-env-bootstrap-servers-test
   (testing "should set the environment variable with values"

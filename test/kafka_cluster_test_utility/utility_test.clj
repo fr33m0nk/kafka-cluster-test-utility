@@ -6,7 +6,7 @@
 (deftest clj-map->bytes-test
   (testing "should return byte-array for clojure map representation of protobuf class"
     (let [actual-byte-array (clj-map->bytes PlatformInfo {:release "4.19.0"})]
-      (is (= "4.19.0" (.getRelease (PlatformInfo/parseFrom actual-byte-array)))))))
+      (is (= "4.19.0" (.getRelease (PlatformInfo/parseFrom ^"[B" actual-byte-array)))))))
 
 (deftest bytes->clj-map-test
   (testing "should return clojure map representation of protobuf class for its byte-array"

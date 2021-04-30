@@ -3,7 +3,7 @@
     [kafka-cluster-test-utility.kafka-cluster-state :as state]
     [clojure.test :refer :all]
     [kafka-cluster-test-utility.kafka-cluster :as c :refer [start-cluster stop-cluster get-bootstrap-server]]
-            [clojure.string :as str]))
+    [clojure.string :as str]))
 
 (deftest start-cluster-test
   (testing "should return a map with cluster and running? true if cluster is not up"

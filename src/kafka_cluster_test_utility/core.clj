@@ -12,7 +12,7 @@
 
 (defn- with-consumer [f topic timeout-in-seconds]
   (let [properties (assoc u/default-properties
-                         ConsumerConfig/BOOTSTRAP_SERVERS_CONFIG (cluster/get-bootstrap-server))]
+                     ConsumerConfig/BOOTSTRAP_SERVERS_CONFIG (cluster/get-bootstrap-server))]
     (with-open [consumer (c/get-consumer properties)]
       (f consumer topic timeout-in-seconds))))
 
@@ -30,7 +30,7 @@
   (fn [f]
     (try
       (cluster/start-cluster number-of-brokers)
-      (topic/recreate-topics topics)
+      (topic/recreate-topics number-of-brokers topics)
       (f)
       (finally
         (cluster/stop-cluster)))))
@@ -41,7 +41,7 @@
   {:pre [(sequential? topic-list)]}
   `(try
      (cluster/start-cluster ~number-of-brokers)
-     (topic/recreate-topics ~topic-list)
+     (topic/recreate-topics ~number-of-brokers ~topic-list)
      ~@body
      (finally
        (cluster/stop-cluster))))
@@ -50,7 +50,7 @@
   "Produces the provided message to Kafka topic provided.
   This uses the default properties to do so."
   (let [properties (assoc u/default-properties
-                         ProducerConfig/BOOTSTRAP_SERVERS_CONFIG (cluster/get-bootstrap-server))]
+                     ProducerConfig/BOOTSTRAP_SERVERS_CONFIG (cluster/get-bootstrap-server))]
     (with-open [producer (p/get-producer properties)]
       (p/send-message producer topic message))))
 

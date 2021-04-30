@@ -19,7 +19,7 @@
   [kafka-cluster operation]
   (condp = operation
     :start (call-method kafka-cluster :before)
-    :stop  (call-method kafka-cluster :after)))
+    :stop (call-method kafka-cluster :after)))
 
 (defn start-cluster
   "Starts a embedded Kafka cluster with provided number of brokers.
@@ -29,10 +29,10 @@
                        (cluster-operation (:cluster @s/state) :start)
                        (swap! s/state update :running? not)))]
     (cond (-> @s/state :cluster nil?) (do (swap! s/state
-                                               assoc
-                                               :cluster (get-cluster number-of-brokers)
-                                               :running? false)
-                                        (start))
+                                                 assoc
+                                                 :cluster (get-cluster number-of-brokers)
+                                                 :running? false)
+                                          (start))
           (false? (:running? @s/state)) (start)
           :otherwise @s/state)))
 
@@ -50,8 +50,8 @@
   "Returns the bootstrap servers if embedded Kafka cluster is running else nil."
   []
   (utils/when-let* [running? (:running? @s/state)
-             kafka-cluster (:cluster @s/state)]
-    (.bootstrapServers kafka-cluster)))
+                    ^EmbeddedKafkaCluster kafka-cluster (:cluster @s/state)]
+                   (.bootstrapServers kafka-cluster)))
 
 
 

@@ -5,10 +5,10 @@
 
 (defn create-topics
   "Creates topic(s) on supplied Kafka cluster"
-  [& topic-names]
+  [replication & topic-names]
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
-                   (try (.createTopics ^EmbeddedKafkaCluster kafka-cluster (into-array topic-names))
+                   (try (doall (map #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 replication) topic-names))
                         true
                         (catch Exception e
                           false))))
@@ -25,24 +25,24 @@
 
 (defn recreate-topic
   "Recreates topic on supplied Kafka cluster"
-  [topic-name]
+  [replication topic-name]
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
                    (try
                      (delete-topics topic-name)
                      (finally
-                       (create-topics topic-name)))))
+                       (create-topics replication topic-name)))))
 
 (defn recreate-topics
   "Recreates topics on supplied Kafka cluster"
-  [topic-names]
+  [replication topic-names]
   {:pre [(sequential? topic-names)]}
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
                    (try
                      (apply delete-topics topic-names)
                      (finally
-                       (apply create-topics topic-names)))))
+                       (apply (partial create-topics replication) topic-names)))))
 
 
 

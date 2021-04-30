@@ -13,11 +13,11 @@
      `(do ~@body))))
 
 (def default-properties
-  {ProducerConfig/KEY_SERIALIZER_CLASS_CONFIG   "org.apache.kafka.common.serialization.StringSerializer"
-   ProducerConfig/VALUE_SERIALIZER_CLASS_CONFIG "org.apache.kafka.common.serialization.ByteArraySerializer"
-   ConsumerConfig/AUTO_OFFSET_RESET_CONFIG      "earliest"
-   ConsumerConfig/KEY_DESERIALIZER_CLASS_CONFIG "org.apache.kafka.common.serialization.StringDeserializer"
-   ConsumerConfig/GROUP_ID_CONFIG               (str "test_consumer" (str (UUID/randomUUID)))
+  {ProducerConfig/KEY_SERIALIZER_CLASS_CONFIG     "org.apache.kafka.common.serialization.StringSerializer"
+   ProducerConfig/VALUE_SERIALIZER_CLASS_CONFIG   "org.apache.kafka.common.serialization.ByteArraySerializer"
+   ConsumerConfig/AUTO_OFFSET_RESET_CONFIG        "earliest"
+   ConsumerConfig/KEY_DESERIALIZER_CLASS_CONFIG   "org.apache.kafka.common.serialization.StringDeserializer"
+   ConsumerConfig/GROUP_ID_CONFIG                 (str "test_consumer" (str (UUID/randomUUID)))
    ConsumerConfig/VALUE_DESERIALIZER_CLASS_CONFIG "org.apache.kafka.common.serialization.ByteArrayDeserializer"})
 
 (defn clj-map->bytes

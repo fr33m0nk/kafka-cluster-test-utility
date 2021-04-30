@@ -1,14 +1,16 @@
 (ns kafka-cluster-test-utility.producer
-  (:import (org.apache.kafka.clients.producer KafkaProducer ProducerRecord)))
+  (:import (org.apache.kafka.clients.producer KafkaProducer ProducerRecord)
+           (java.util Map)))
 
 (defn get-producer
   "Returns a Kafka Producer"
-  [properties]
+  ^KafkaProducer
+  [^Map properties]
   (KafkaProducer. properties))
 
 (defn send-message
   "Produces to a topic using provided producer"
-  [producer ^KafkaProducer topic message]
+  [^KafkaProducer producer topic message]
   (->> message
        (ProducerRecord. topic)
        (.send producer)

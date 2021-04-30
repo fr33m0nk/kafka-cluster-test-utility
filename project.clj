@@ -1,10 +1,10 @@
-(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.3.0"
+(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.4.0"
   :description "Embedded Kafka Cluster and Protobuf util"
   :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"
   :license {:name "Eclipse Public License"
             :url  "http://www.eclipse.org/legal/epl-v20.html"}
   :scm {:name "git"
-        :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"}
+        :url  "https://github.com/fr33m0nk/kafka-cluster-test-utility"}
   :dependencies [[org.clojure/tools.namespace "1.1.0"]
                  [junit/junit "4.13.2"]
                  [org.junit.jupiter/junit-jupiter-api "5.7.1"]
@@ -25,9 +25,9 @@
              :dev      {:global-vars  {*warn-on-reflection* true}
                         :dependencies [[org.tensorflow/proto "1.15.0"]]}
              :provided {:dependencies []}}
-  :deploy-repositories [["clojars" {:url      "https://repo.clojars.org"
-                                    :username :env/clojars_user
-                                    :password :env/clojars_pass
+  :deploy-repositories [["clojars" {:url           "https://repo.clojars.org"
+                                    :username      :env/clojars_user
+                                    :password      :env/clojars_pass
                                     :sign-releases false}]]
   :aliases {"update-readme-version" ["shell" "sed" "-i" "s/\\\\[kafka-cluster-test-utility \"[0-9.]*\"\\\\]/[kafka-cluster-test-utility \"${:version}\"]/" "README.md"]}
   :release-tasks [["shell" "git" "diff" "--exit-code"]

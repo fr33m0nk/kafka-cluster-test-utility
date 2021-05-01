@@ -26,22 +26,22 @@
   "Convenience method for returning a function which takes a function as parameter.
   Returned function would start embedded Kafka cluster as well as create the provided topics.
   This can be used as a test fixtures."
-  [number-of-brokers & topics]
+  [& topics]
   (fn [f]
     (try
-      (cluster/start-cluster number-of-brokers)
-      (topic/recreate-topics number-of-brokers topics)
+      (cluster/start-cluster)
+      (topic/recreate-topics topics)
       (f)
       (finally
         (cluster/stop-cluster)))))
 
 (defmacro with-embedded-kafka-cluster
   "Macro that wraps and executes body within after starting Kafka cluster creating topics"
-  [number-of-brokers topic-list & body]
+  [topic-list & body]
   {:pre [(sequential? topic-list)]}
   `(try
-     (cluster/start-cluster ~number-of-brokers)
-     (topic/recreate-topics ~number-of-brokers ~topic-list)
+     (cluster/start-cluster)
+     (topic/recreate-topics ~topic-list)
      ~@body
      (finally
        (cluster/stop-cluster))))

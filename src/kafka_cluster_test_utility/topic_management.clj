@@ -1,21 +1,15 @@
 (ns kafka-cluster-test-utility.topic-management
   (:require [kafka-cluster-test-utility.kafka-cluster-state :as s]
             [kafka-cluster-test-utility.utility :as utils])
-  (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)
-           (org.apache.kafka.common.config TopicConfig)))
+  (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)))
 
 (defn create-topics
   "Creates topic(s) on supplied Kafka cluster"
-  [replication & topic-names]
+  [& topic-names]
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
                    (try (doall
-                          (map
-                            #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 replication
-                                           {TopicConfig/MIN_IN_SYNC_REPLICAS_CONFIG (str (if (> replication 1)
-                                                                                           (dec replication)
-                                                                                           replication))})
-                            topic-names))
+                          (map #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 1) topic-names))
                         true
                         (catch Exception e
                           false))))
@@ -32,24 +26,24 @@
 
 (defn recreate-topic
   "Recreates topic on supplied Kafka cluster"
-  [replication topic-name]
+  [topic-name]
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
                    (try
                      (delete-topics topic-name)
                      (finally
-                       (create-topics replication topic-name)))))
+                       (create-topics topic-name)))))
 
 (defn recreate-topics
   "Recreates topics on supplied Kafka cluster"
-  [replication topic-names]
+  [topic-names]
   {:pre [(sequential? topic-names)]}
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
                    (try
                      (apply delete-topics topic-names)
                      (finally
-                       (apply (partial create-topics replication) topic-names)))))
+                       (apply create-topics topic-names)))))
 
 
 

@@ -4,9 +4,8 @@
 
 (deftest with-embedded-kafka-cluster-test
   (testing "should produce and consume message with in the with-embedded-kafka-cluster macro"
-    (core/with-embedded-kafka-cluster 3
-                                      ["test-1"]
-                                      (core/send-with-producer "test-topic" (.getBytes "hello dost"))
-                                      (is (= "hello dost"
-                                             (->> ^"[B" (core/with-consumer-read-one "test-topic" 2)
-                                                  String.))))))
+    (core/with-embedded-kafka-cluster ["test-1"]
+      (core/send-with-producer "test-topic" (.getBytes "hello dost"))
+      (is (= "hello dost"
+             (->> ^"[B" (core/with-consumer-read-one "test-topic" 2)
+                  String.))))))

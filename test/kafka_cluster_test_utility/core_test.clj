@@ -5,7 +5,7 @@
             [clojure.string :as str])
   (:import [org.tensorflow.util.testlog PlatformInfo]))
 
-(use-fixtures :once (core/with-embedded-kafka-cluster-and-topics 3 "test-topic"))
+(use-fixtures :once (core/with-embedded-kafka-cluster-and-topics "test-topic"))
 
 (deftest with-embedded-kafka-cluster-and-topics-test
   (testing "should produce and consume message from cluster"

@@ -3,7 +3,8 @@
 [![codecov](https://codecov.io/gh///branch/master/graph/badge.svg)](https://codecov.io/gh//)
 [![Clojars Project](https://img.shields.io/clojars/v/net.clojars.fr33m0nk/kafka-cluster-test-utility.svg)](https://clojars.org/net.clojars.fr33m0nk/kafka-cluster-test-utility)
 
-A Clojure library designed to simplify the execution of end-to-end tests for applications that use Kafka as message broker or streaming platform.
+A Clojure library which provides an embedded Kafka cluster consisting of a single Kafka node.
+It is designed to simplify the execution of end-to-end tests for applications that use Kafka Cluster as message broker or streaming platform.
 The applications may :
 * consume messages from Kafka topic
 * produce messages to Kafka topic
@@ -42,7 +43,7 @@ This library provides convenience in namespace `kafka-cluster-test-utility.core`
 ```clojure
 (require '[kafka-cluster-test-utility.core :as core])
 
-(core/with-embedded-kafka-cluster 3 ["test-1"]
+(core/with-embedded-kafka-cluster ["test-1"]
                                   (core/send-with-producer "test-topic" (.getBytes "hello dost"))
                                   (core/with-consumer-read-one "test-topic" 2)
                                   (comment (do something))
@@ -57,7 +58,7 @@ This library provides convenience in namespace `kafka-cluster-test-utility.core`
     [kafka-cluster-test-utility.utility :as utility])
   (:import [org.tensorflow.util.testlog PlatformInfo]))
 
-(use-fixtures :once (core/with-embedded-kafka-cluster-and-topics 3 "test-topic"))
+(use-fixtures :once (core/with-embedded-kafka-cluster-and-topics "test-topic"))
 
 (deftest with-embedded-kafka-cluster-test
          (testing "should produce and consume message from cluster"

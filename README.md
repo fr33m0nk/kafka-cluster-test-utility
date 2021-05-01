@@ -11,7 +11,7 @@ The applications may :
 * use Kafka streaming API
 
 ```clojure
-[kafka-cluster-test-utility "0.2.0"]
+[kafka-cluster-test-utility "1.0.0"]
 ```
 
 ## Features

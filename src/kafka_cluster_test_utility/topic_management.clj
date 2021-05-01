@@ -12,7 +12,9 @@
                    (try (doall
                           (map
                             #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 replication
-                                           {TopicConfig/MIN_IN_SYNC_REPLICAS_CONFIG (str replication)})
+                                           {TopicConfig/MIN_IN_SYNC_REPLICAS_CONFIG (str (if (> replication 1)
+                                                                                           (dec replication)
+                                                                                           replication))})
                             topic-names))
                         true
                         (catch Exception e

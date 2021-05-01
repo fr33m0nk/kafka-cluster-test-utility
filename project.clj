@@ -1,4 +1,4 @@
-(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.5.0"
+(defproject net.clojars.fr33m0nk/kafka-cluster-test-utility "0.6.0"
   :description "Embedded Kafka Cluster and Protobuf util"
   :url "https://github.com/fr33m0nk/kafka-cluster-test-utility"
   :license {:name "Eclipse Public License"

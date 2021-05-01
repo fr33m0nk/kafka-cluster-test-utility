@@ -1,14 +1,19 @@
 (ns kafka-cluster-test-utility.topic-management
   (:require [kafka-cluster-test-utility.kafka-cluster-state :as s]
             [kafka-cluster-test-utility.utility :as utils])
-  (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)))
+  (:import (org.apache.kafka.streams.integration.utils EmbeddedKafkaCluster)
+           (org.apache.kafka.common.config TopicConfig)))
 
 (defn create-topics
   "Creates topic(s) on supplied Kafka cluster"
   [replication & topic-names]
   (utils/when-let* [running? (:running? @s/state)
                     kafka-cluster (:cluster @s/state)]
-                   (try (doall (map #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 replication) topic-names))
+                   (try (doall
+                          (map
+                            #(.createTopic ^EmbeddedKafkaCluster kafka-cluster % 1 replication
+                                           {TopicConfig/MIN_IN_SYNC_REPLICAS_CONFIG (str replication)})
+                            topic-names))
                         true
                         (catch Exception e
                           false))))

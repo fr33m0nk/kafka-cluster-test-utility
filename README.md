@@ -1,6 +1,4 @@
 # kafka-cluster-test-utility
-[![Build Status](https://travis-ci.org//.svg?branch=master)](https://travis-ci.org//)
-[![codecov](https://codecov.io/gh///branch/master/graph/badge.svg)](https://codecov.io/gh//)
 [![Clojars Project](https://img.shields.io/clojars/v/net.clojars.fr33m0nk/kafka-cluster-test-utility.svg)](https://clojars.org/net.clojars.fr33m0nk/kafka-cluster-test-utility)
 
 A Clojure library which provides an embedded Kafka cluster consisting of a single Kafka node.
@@ -11,7 +9,7 @@ The applications may :
 * use Kafka streaming API
 
 ```clojure
-[kafka-cluster-test-utility "1.0.0"]
+[net.clojars.fr33m0nk/kafka-cluster-test-utility "1.1.0"]
 ```
 
 ## Features
@@ -43,7 +41,7 @@ This library provides convenience in namespace `kafka-cluster-test-utility.core`
 ```clojure
 (require '[kafka-cluster-test-utility.core :as core])
 
-(core/with-embedded-kafka-cluster ["test-1"]
+(core/with-embedded-kafka-cluster ["test-topic"]
                                   (core/send-with-producer "test-topic" (.getBytes "hello dost"))
                                   (core/with-consumer-read-one "test-topic" 2)
                                   (comment (do something))

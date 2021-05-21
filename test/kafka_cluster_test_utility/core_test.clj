@@ -1,6 +1,7 @@
 (ns kafka-cluster-test-utility.core-test
   (:require [clojure.test :refer :all]
             [kafka-cluster-test-utility.core :as core]
+            [kafka-cluster-test-utility.kafka-cluster :as cluster]
             [kafka-cluster-test-utility.utility :as utility]
             [clojure.string :as str])
   (:import [org.tensorflow.util.testlog PlatformInfo]))
@@ -30,3 +31,14 @@
   (testing "should set the environment variable with values"
     (core/set-env-bootstrap-servers "BOOTSRAPSERVERS")
     (is (str/starts-with? (System/getenv "BOOTSRAPSERVERS") "localhost"))))
+
+(deftest get-bootstrap-server-test
+  (testing "should return nil if cluster is not up and running"
+    (cluster/stop-cluster)
+    (is (nil? (core/get-bootstrap-server))))
+  (testing "should return bootstrap server if cluster is up and running"
+    (cluster/start-cluster)
+    (let [bootstrap-server (core/get-bootstrap-server)]
+      (is (not (nil? bootstrap-server)))
+      (is (str/includes? bootstrap-server "localhost:")))
+    (cluster/stop-cluster)))

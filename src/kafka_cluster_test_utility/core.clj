@@ -16,6 +16,11 @@
     (with-open [consumer (c/get-consumer properties)]
       (f consumer topic timeout-in-seconds))))
 
+(defn get-bootstrap-server []
+  "Returns the bootstrap servers provided by the embedded Kafka cluster instance.
+  Bootstrap server is returned only if embedded Kafka cluster is running else nil."
+  (cluster/get-bootstrap-server))
+
 (defn set-env-bootstrap-servers
   "Sets the provided environment variable with bootstrap servers provided by the embedded Kafka cluster instance.
   This variable needs to be same as one used by the application for connecting to Kafka"
